@@ -1,4 +1,4 @@
-package com.example.authc.model;
+package com.example.model;
 
 public class UserDetailsDTO {
     private int id;

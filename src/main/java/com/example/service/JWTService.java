@@ -1,11 +1,11 @@
-package com.example.authc.service;
+package com.example.service;
 
-import com.example.authc.model.JWT;
-import com.example.authc.model.LoginRequest;
-import com.example.authc.model.UserDTO;
-import com.example.authc.model.UserDetailsDTO;
-import com.example.authc.repository.JWTRepository;
-import com.example.authc.repository.UserRepository;
+import com.example.model.JWT;
+import com.example.model.LoginRequest;
+import com.example.model.UserDTO;
+import com.example.model.UserDetailsDTO;
+import com.example.repository.JWTRepository;
+import com.example.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -35,10 +35,13 @@ public class JWTService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    RabbitMQSender rabbitMQSender;
     public String createJWT(LoginRequest loginRequest){
         String string = generate(loginRequest);
         JWT jwt = new JWT(string);
         jwtRepository.save(jwt);
+        rabbitMQSender.send(jwt);
         return string;
     }
 

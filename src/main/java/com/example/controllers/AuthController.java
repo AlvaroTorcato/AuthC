@@ -1,7 +1,7 @@
-package com.example.authc.controllers;
+package com.example.controllers;
 
-import com.example.authc.model.LoginRequest;
-import com.example.authc.service.JWTService;
+import com.example.model.LoginRequest;
+import com.example.service.JWTService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;

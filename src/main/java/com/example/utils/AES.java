@@ -1,4 +1,4 @@
-package com.example.authc.utils;
+package com.example.utils;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
