@@ -128,7 +128,8 @@ public class RabbitMQConfig {
 
     String products1Queue = "authentications1_queue_fanout";
 
-    //String products2Queue = "products2_queue_fanout";
+    String products2Queue = "authentications2_queue_fanout";
+    String products3Queue = "authentications3_queue_fanout";
 
     String productsExchange = "authentications_exchange";
 
@@ -137,10 +138,15 @@ public class RabbitMQConfig {
         return new Queue(products1Queue, true);
     }
 
-    /*@Bean
+    @Bean
     Queue products2Queue() {
         return new Queue(products2Queue, false);
-    }*/
+    }
+
+    @Bean
+    Queue products3Queue() {
+        return new Queue(products3Queue, false);
+    }
 
     @Bean
     public FanoutExchange exchange() {
@@ -152,10 +158,15 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(products1Queue).to(exchange);
     }
 
-    /*@Bean
+    @Bean
     Binding emailBinding(Queue products2Queue, FanoutExchange exchange) {
         return BindingBuilder.bind(products2Queue).to(exchange);
-    }*/
+    }
+
+    @Bean
+    Binding emailBinding1(Queue products3Queue, FanoutExchange exchange) {
+        return BindingBuilder.bind(products3Queue).to(exchange);
+    }
 
     @Bean
     public MessageConverter messageConverter() {
