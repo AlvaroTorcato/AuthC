@@ -2,6 +2,7 @@ package com.example.controllers;
 
 import com.example.model.LoginRequest;
 import com.example.service.JWTService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class AuthController {
 
     @Operation(summary = "Signin the user")
     @PostMapping("/signin")
-    public String authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public String authenticateUser(@Valid @RequestBody LoginRequest loginRequest) throws JsonProcessingException {
         return service.createJWT(loginRequest);
     }
 

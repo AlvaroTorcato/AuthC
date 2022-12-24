@@ -5,7 +5,9 @@ import com.example.model.LoginRequest;
 import com.example.model.UserDTO;
 import com.example.model.UserDetailsDTO;
 import com.example.repository.JWTRepository;
+import com.example.repository.RabbitMQSender;
 import com.example.repository.UserRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -37,11 +39,12 @@ public class JWTService {
     private UserRepository userRepository;
     @Autowired
     RabbitMQSender rabbitMQSender;
-    public String createJWT(LoginRequest loginRequest){
+    public String createJWT(LoginRequest loginRequest) throws JsonProcessingException {
         String string = generate(loginRequest);
         JWT jwt = new JWT(string);
         jwtRepository.save(jwt);
-        rabbitMQSender.send(jwt);
+        //rabbitMQSender.send(jwt);
+        rabbitMQSender.sendJsonMessage(jwt);
         return string;
     }
 
