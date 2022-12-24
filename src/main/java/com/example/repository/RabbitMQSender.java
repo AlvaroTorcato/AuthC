@@ -24,11 +24,12 @@ public class RabbitMQSender {
 
     @Autowired
     private FanoutExchange fanoutExchange;
-
+    private static Logger logger = LogManager.getLogger(RabbitMQSender.class.toString());
     public void sendJsonMessage(JWT jwt) throws JsonProcessingException{
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String Json=ow.writeValueAsString(jwt);
         rabbitTemplate.convertAndSend(fanoutExchange.getName(),"",Json);
+        logger.info("Sending Message to the Queue : " + Json);
     }
 
     /*@Autowired
