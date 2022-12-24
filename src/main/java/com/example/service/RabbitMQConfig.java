@@ -27,14 +27,14 @@ public class RabbitMQConfig {
     public FanoutExchange fanout () {
         return new FanoutExchange("Auth");
     }
-    @Bean
+    /*@Bean
     public Queue autoDeleteQueue() {
         return new AnonymousQueue();
     }
     @Bean
     public Binding binding (FanoutExchange fanout, Queue autoDeleteQUeue){
         return BindingBuilder.bind(autoDeleteQUeue).to(fanout);
-    }
+    }*/
 
 /*
     String products1Queue = "authentications1_queue_fanout";
