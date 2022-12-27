@@ -48,6 +48,13 @@ public class JWTService {
         return string;
     }
 
+    public void createJWT(String jwt){
+        JWT find = jwtRepository.search(jwt);
+        if (find == null){
+            jwtRepository.save(find);
+        }
+    }
+
     public String generate(LoginRequest loginRequest){
         UserDTO user = userRepository.findUserDTO(loginRequest.getUsername(), loginRequest.getPassword());
         if (user == null){
@@ -87,4 +94,6 @@ public class JWTService {
         return user;
 
     }
+
+
 }
