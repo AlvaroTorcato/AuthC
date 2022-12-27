@@ -48,11 +48,16 @@ public class JWTService {
         return string;
     }
 
-    public void createJWT(String jwt){
-        JWT find = jwtRepository.search(jwt);
-        if (find == null){
-            jwtRepository.save(find);
+    public void createJWT(JWT jwt){
+        try {
+            JWT find = jwtRepository.search(jwt.getToken());
+            if (find == null){
+                jwtRepository.save(find);
+            }
+        }catch (Exception e){
+            jwtRepository.save(jwt);
         }
+
     }
 
     public String generate(LoginRequest loginRequest){
