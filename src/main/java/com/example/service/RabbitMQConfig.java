@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.repository.ClientAuth;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,13 +29,30 @@ public class RabbitMQConfig {
         return new FanoutExchange("Auth");
     }
     @Bean
+    public DirectExchange exchange() {
+        return new DirectExchange("jwt");}
+    @Bean
     public Queue autoDeleteQueue() {
         return new AnonymousQueue();
     }
+/*
+    @Bean
+    public Queue authQueue() {
+        return new AnonymousQueue();
+    }*/
     @Bean
     public Binding binding (FanoutExchange fanout, Queue autoDeleteQueue){
         return BindingBuilder.bind(autoDeleteQueue).to(fanout);
     }
+    @Bean
+    public ClientAuth auth(){
+        return new ClientAuth();
+    }
+/*
+    @Bean
+    public Binding binding1 (DirectExchange exchange, Queue authQueue){
+        return BindingBuilder.bind(authQueue).to(exchange).with("rpc");
+    }*/
 
 /*
     String products1Queue = "authentications1_queue_fanout";
