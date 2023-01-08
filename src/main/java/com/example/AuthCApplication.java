@@ -28,7 +28,7 @@ public class AuthCApplication {
             if(repository.count() == 0){
                 List<JWT> lista = clientAuth.send();
                 if (lista != null){
-                    repository.saveAll(clientAuth.send());
+                    repository.saveAll(lista);
                 }
             }
             //repository.save(new Customer("Jack", "Bauer"));
