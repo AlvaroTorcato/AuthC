@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.repository.ClientAuth;
+import com.example.controllers.ClientAuth;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

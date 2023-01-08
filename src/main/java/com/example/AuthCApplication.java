@@ -1,7 +1,7 @@
 package com.example;
 
 import com.example.model.JWT;
-import com.example.repository.ClientAuth;
+import com.example.controllers.ClientAuth;
 import com.example.repository.JWTRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
